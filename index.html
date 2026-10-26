@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>汉语语气词「呢」互动练习</title>
+<style>
+:root{--navy:#243b68;--teal:#43818a;--blue:#1877e8;--orange:#f28a00;--bg:#f5f7fb;--ink:#243044}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Microsoft YaHei",sans-serif;line-height:1.55}
+header{background:var(--navy);color:white;padding:28px 18px;text-align:center}header h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px)}header p{margin:0;color:#e5ebf5}
+main{max-width:900px;margin:24px auto;padding:0 16px 40px}.intro{background:white;border-radius:16px;padding:18px 22px;margin-bottom:18px;box-shadow:0 3px 14px #1c2d4810}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.rule{background:white;border-radius:16px;padding:18px;border-top:5px solid var(--teal);box-shadow:0 3px 14px #1c2d4810}.rule:nth-child(2){border-color:#00a85a}.rule:nth-child(3){border-color:var(--blue)}.rule:nth-child(4){border-color:var(--orange)}
+.rule h2{font-size:18px;margin:0 0 8px}.rule p{margin:6px 0}.de{color:#687080}.quiz{margin-top:24px;background:white;border-radius:16px;padding:22px;box-shadow:0 3px 14px #1c2d4810}.quiz h2{margin-top:0}.question{padding:16px 0;border-bottom:1px solid #e7eaf0}.question:last-of-type{border-bottom:0}.qcn{font-size:20px;font-weight:700}.pinyin{color:var(--teal);margin:3px 0}.options{display:grid;gap:8px;margin-top:10px}.options label{display:flex;gap:10px;align-items:flex-start;border:1px solid #dce2eb;border-radius:10px;padding:10px 12px;cursor:pointer}.options label:hover{background:#f4f7fc}.feedback{min-height:24px;margin-top:8px;font-weight:700}.correct{color:#16834a}.wrong{color:#b64a35}
+button{border:0;border-radius:10px;background:var(--navy);color:white;padding:12px 18px;font-size:16px;cursor:pointer;margin:10px 8px 0 0}button.secondary{background:#e8edf5;color:var(--navy)}#score{font-weight:700;font-size:18px;margin-top:14px}.note{font-size:14px;color:#687080}
+</style>
+</head>
+<body>
+<header><h1>汉语语气词「呢」</h1><p>互动练习 · HSK 初级 · Verstehen und üben</p></header>
+<main>
+<section class="intro">
+<strong>学习目标：</strong>根据语境理解「呢」的常见用法。<br>
+<strong>Hinweis:</strong> „呢“ hat keine feste deutsche Übersetzung. Die Bedeutung hängt vom Kontext ab.
+</section>
+<section class="grid" aria-label="四种用法">
+<div class="rule"><h2>01 · 追问对方</h2><p>我喜欢喝茶，你呢？</p><p class="pinyin">Wǒ xǐhuan hē chá, nǐ ne?</p><p class="de">Ich trinke gern Tee. Und du?</p></div>
+<div class="rule"><h2>02 · 询问位置</h2><p>我的手机呢？</p><p class="pinyin">Wǒ de shǒujī ne?</p><p class="de">Wo ist mein Handy?</p></div>
+<div class="rule"><h2>03 · 动作正在进行</h2><p>他在看书呢。</p><p class="pinyin">Tā zài kàn shū ne.</p><p class="de">Er liest gerade.</p></div>
+<div class="rule"><h2>04 · 强调当前情况</h2><p>别担心，我在这儿呢！</p><p class="pinyin">Bié dānxīn, wǒ zài zhèr ne!</p><p class="de">Keine Sorge, ich bin doch hier!</p></div>
+</section>
+<section class="quiz">
+<h2>小测验 · Was bedeutet „呢“ hier?</h2>
+<p>请选择最合适的德语意思。选择后会立即显示反馈。</p>
+<div id="questions"></div>
+<button onclick="checkAll()">查看得分</button><button class="secondary" onclick="resetQuiz()">重新练习</button>
+<div id="score" aria-live="polite"></div>
+<p class="note">课堂提示：先让学生独立选择，再请他们解释判断依据。</p>
+</section>
+</main>
+<script>
+const qs=[
+{cn:"我今年三十岁，你呢？",py:"Wǒ jīnnián sānshí suì, nǐ ne?",opts:["Wo bist du?","Und du?","Du bist gerade…"],a:1,why:"「你呢？」用于把相同的问题转向对方。"},
+{cn:"老师呢？",py:"Lǎoshī ne?",opts:["Wo ist der Lehrer / die Lehrerin?","Der Lehrer liest gerade.","Und der Lehrer?（问同一问题时）"],a:0,why:"单独用「名词 + 呢？」可以询问人或物在哪里。"},
+{cn:"妈妈在做饭呢。",py:"Māma zài zuò fàn ne.",opts:["Wo ist Mama?","Mama kocht gerade.","Und Mama?"],a:1,why:"「在 + 动词 + 呢」表示动作正在进行。"},
+{cn:"别着急，我在这儿呢！",py:"Bié zháo jí, wǒ zài zhèr ne!",opts:["Ich bin doch hier!","Wo bin ich?","Und ich?"],a:0,why:"这里的「呢」强调、确认当前情况，德语里可用 doch / ja 表达。"},
+{cn:"我坐地铁去公司，你呢？",py:"Wǒ zuò dìtiě qù gōngsī, nǐ ne?",opts:["Wie lange dauert es?","Wo ist die U-Bahn?","Und du? Wie fährst du zur Arbeit?"],a:2,why:"说话人把相同的问题转向对方，后半句省略了重复内容。"},
+{cn:"小猫在桌子上呢。",py:"Xiǎo māo zài zhuōzi shàng ne.",opts:["Wo ist die Katze?","Das Kätzchen ist ja auf dem Tisch.","Und die Katze?"],a:1,why:"这里是在强调或确认小猫当前的位置。"},
+{cn:"我的书呢？",py:"Wǒ de shū ne?",opts:["Wo ist mein Buch?","Ich lese gerade.","Und mein Buch?（转问对方时）"],a:0,why:"用「名词 + 呢？」询问东西在哪里。"},
+{cn:"爸爸在看电视呢。",py:"Bàba zài kàn diànshì ne.",opts:["Wo ist Papa?","Papa sieht gerade fern.","Und Papa?"],a:1,why:"「在 + 动词 + 呢」表示动作正在进行。"},
+{cn:"我喜欢游泳，你呢？",py:"Wǒ xǐhuan yóuyǒng, nǐ ne?",opts:["Wo schwimmst du?","Und du? Magst du schwimmen?","Du schwimmst gerade."],a:1,why:"「你呢？」把前面的话题或问题转向对方。"},
+{cn:"放心吧，钥匙在我这儿呢。",py:"Fàngxīn ba, yàoshi zài wǒ zhèr ne.",opts:["Wo sind die Schlüssel?","Die Schlüssel sind gerade weg.","Keine Sorge, der Schlüssel ist doch bei mir."],a:2,why:"「呢」强调、确认当前情况，使语气更自然。"}
+];
+const root=document.getElementById('questions');
+function render(){root.innerHTML=qs.map((q,i)=>`<div class="question" id="q${i}"><div class="qcn">${i+1}. ${q.cn}</div><div class="pinyin">${q.py}</div><div class="options">${q.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}" onchange="feedback(${i})"><span>${o}</span></label>`).join('')}</div><div class="feedback" id="f${i}" aria-live="polite"></div></div>`).join('');document.getElementById('score').textContent='';}
+function feedback(i){const q=qs[i],v=document.querySelector(`input[name="q${i}"]:checked`);const f=document.getElementById('f'+i);if(!v){f.textContent='';return}if(+v.value===q.a){f.className='feedback correct';f.textContent='✓ 正确！ '+q.why}else{f.className='feedback wrong';f.textContent='再想一想。 '+q.why}}
+function checkAll(){let n=0,answered=0;qs.forEach((q,i)=>{const v=document.querySelector(`input[name="q${i}"]:checked`);if(v){answered++;if(+v.value===q.a)n++}else{document.getElementById('f'+i).className='feedback wrong';document.getElementById('f'+i).textContent='请选择一个答案。'}});document.getElementById('score').textContent=`得分：${n} / ${qs.length}（已回答 ${answered} 题）`}
+function resetQuiz(){render();window.scrollTo({top:document.querySelector('.quiz').offsetTop-10,behavior:'smooth'})}
+render();
+</script>
+</body>
+</html>
