@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多 + 形容词｜德语翻译练习</title>
+<style>
+:root{--navy:#243b68;--teal:#43818a;--bg:#f4f7fb;--ink:#243044;--muted:#6b7280;--green:#16834a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Microsoft YaHei",sans-serif;line-height:1.55}
+header{background:var(--navy);color:white;padding:28px 18px;text-align:center}header h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px)}header p{margin:0;color:#e5ebf5}
+main{max-width:850px;margin:24px auto;padding:0 16px 40px}.intro,.task{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 3px 14px #1c2d4810}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pill{background:#e7f0f2;color:#285e66;padding:5px 10px;border-radius:999px;font-size:14px}
+.item{padding:16px 0;border-bottom:1px solid #e6eaf0}.item:last-child{border-bottom:0}.de{font-size:18px;font-weight:700}.hint{font-size:14px;color:var(--muted);margin:5px 0 9px}
+input[type=text]{width:100%;border:1px solid #ccd5e1;border-radius:10px;padding:12px;font-size:16px;font-family:inherit}input[type=text]:focus{outline:2px solid #9bc4cb;border-color:var(--teal)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}button{border:0;border-radius:10px;background:var(--navy);color:white;padding:10px 15px;font-size:15px;cursor:pointer}button.secondary{background:#e8edf5;color:var(--navy)}button:hover{filter:brightness(.97)}
+.answer{display:none;margin-top:10px;padding:12px;background:#edf6f1;border-radius:10px}.answer.show{display:block}.correct{color:var(--green);font-weight:700}.small{font-size:13px;color:var(--muted)}.score{font-weight:700;font-size:18px;margin-top:16px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:12px}
+</style>
+</head>
+<body>
+<header><h1>多 + 形容词</h1><p>德语 → 汉语 · Übersetze ins Chinesische</p></header>
+<main>
+<section class="intro">
+<strong>Aufgabe:</strong> Übersetze die folgenden Sätze ins Chinesische. Achte besonders auf die Struktur „多 + Adjektiv“.
+<div class="pills"><span class="pill">多大 · Wie alt / wie groß?</span><span class="pill">多高 · Wie groß / wie hoch?</span><span class="pill">多长 · Wie lang?</span><span class="pill">多长时间 · Wie lange?</span><span class="pill">多远 · Wie weit?</span></div>
+<p class="small">先自己输入答案，再点击“查看参考答案”。参考答案可能不是唯一正确的表达。</p>
+</section>
+<section class="task" id="tasks"></section>
+<section class="intro">
+<button onclick="showAll()">显示全部参考答案</button>
+<button class="secondary" onclick="hideAll()">隐藏全部参考答案</button>
+<button class="secondary" onclick="clearInputs()">清空我的答案</button>
+<div class="score" id="progress">已完成 0 / 10 题</div>
+</section>
+<footer>中文互动练习 · DiscoveryLab</footer>
+</main>
+<script>
+const items=[
+{de:"1. Wie alt bist du?",hint:"年龄：多大",answer:"你多大？",alt:"你今年多大？"},
+{de:"2. Wie alt ist dein Bruder?",hint:"年龄：多大",answer:"你哥哥多大？",alt:"你弟弟多大？（如果是 younger brother）"},
+{de:"3. Wie groß ist dein Bruder?",hint:"身高：多高",answer:"你哥哥多高？",alt:"你弟弟多高？（如果是 younger brother）"},
+{de:"4. Wie lang ist dieser Tisch?",hint:"长度：多长",answer:"这张桌子多长？",alt:"这个桌子多长？"},
+{de:"5. Wie lange arbeitest du jeden Tag?",hint:"时间：多长时间",answer:"你每天工作多长时间？",alt:"你一天工作多长时间？"},
+{de:"6. Wie weit ist dein Zuhause von der Schule entfernt?",hint:"距离：多远",answer:"你家离学校有多远？",alt:"从你家到学校有多远？"},
+{de:"7. Wie hoch ist dieses Gebäude?",hint:"高度：多高",answer:"这栋楼多高？",alt:"这座建筑有多高？"},
+{de:"8. Wie lange dauert es von hier bis zum Bahnhof?",hint:"时间：多长时间",answer:"从这儿到车站要多长时间？",alt:"从这里到车站要多长时间？"},
+{de:"9. Wie lang ist diese Straße?",hint:"长度：多长",answer:"这条路多长？",alt:"这条街多长？"},
+{de:"10. Wie weit ist es von deiner Wohnung bis zur Firma?",hint:"距离：多远",answer:"从你家到公司有多远？",alt:"你家离公司有多远？"}
+];
+const root=document.getElementById("tasks");
+root.innerHTML=items.map((x,i)=>`<div class="item"><div class="de">${x.de}</div><div class="hint">提示：${x.hint}</div><input type="text" id="input${i}" placeholder="在这里输入汉语……" oninput="updateProgress()"><div class="actions"><button onclick="toggleAnswer(${i})" id="btn${i}">查看参考答案</button></div><div class="answer" id="ans${i}"><div><strong>参考答案：</strong>${x.answer}</div><div class="small">${x.alt}</div></div></div>`).join("");
+function toggleAnswer(i){const el=document.getElementById("ans"+i);el.classList.toggle("show");document.getElementById("btn"+i).textContent=el.classList.contains("show")?"隐藏参考答案":"查看参考答案"}
+function showAll(){items.forEach((_,i)=>{document.getElementById("ans"+i).classList.add("show");document.getElementById("btn"+i).textContent="隐藏参考答案"})}
+function hideAll(){items.forEach((_,i)=>{document.getElementById("ans"+i).classList.remove("show");document.getElementById("btn"+i).textContent="查看参考答案"})}
+function clearInputs(){items.forEach((_,i)=>document.getElementById("input"+i).value="");updateProgress()}
+function updateProgress(){let n=items.filter((_,i)=>document.getElementById("input"+i).value.trim()).length;document.getElementById("progress").textContent=`已完成 ${n} / ${items.length} 题`}
+</script>
+</body>
+</html>
