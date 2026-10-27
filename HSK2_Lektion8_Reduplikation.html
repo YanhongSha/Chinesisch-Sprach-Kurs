@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动词重叠练习</title>
+<style>
+:root{--teal:#347f8c;--light:#eaf4f5;--ink:#34434a;--muted:#718087;--line:#dce5e7;--bg:#f3f7f8}
+*{box-sizing:border-box}
+body{margin:0;padding:28px 16px;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+.sheet{max-width:850px;margin:auto;background:#fff;border-radius:18px;padding:36px 42px;box-shadow:0 8px 28px rgba(40,75,82,.08)}
+header{text-align:center;border-bottom:2px solid var(--light);padding-bottom:22px;margin-bottom:25px}
+h1{margin:0;color:var(--teal);font-size:2.1rem;letter-spacing:.05em}
+.sub{color:var(--muted);margin:7px 0 0}
+.tip{margin-top:15px;padding:12px 15px;background:var(--light);border-left:4px solid var(--teal);border-radius:6px;text-align:left}
+.item{border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:15px;break-inside:avoid}
+.num{font-size:.85rem;color:var(--muted);margin-bottom:5px}
+.de{font-size:1.12rem;font-weight:600}
+.answer{display:none;margin-top:13px;padding:13px 15px;background:#f0f8f1;border-left:4px solid #5c9b70;border-radius:6px}
+.answer.show{display:block}
+.hanzi{font-size:1.17rem;font-weight:600;color:#285b3b;margin-bottom:4px}
+.pinyin{color:#52745a;font-size:.98rem}
+button{margin-top:12px;border:1px solid var(--teal);border-radius:7px;background:white;color:var(--teal);padding:8px 13px;font-size:.94rem;cursor:pointer}
+button:hover{background:var(--light)}
+footer{text-align:center;margin-top:22px;color:var(--muted);font-size:.9rem}
+@media(max-width:600px){.sheet{padding:25px 17px}h1{font-size:1.75rem}.item{padding:14px}.de{font-size:1.03rem}}
+@media print{body{background:white;padding:0}.sheet{max-width:none;box-shadow:none;padding:10mm}.answer{display:block}button{display:none}}
+</style>
+</head>
+<body>
+<main class="sheet">
+<header>
+<h1>动词重叠练习</h1>
+<p class="sub">德语翻译成汉语 · HSK 2</p>
+<div class="tip">请阅读德语句子，先自己翻译成中文。点击按钮后，可以查看汉字答案和对应拼音。</div>
+</header>
+
+<section class="item">
+<div class="num">第 1 题</div>
+<div class="de">Schau mal nach, wie das Wetter morgen wird.</div>
+<button type="button">显示中文和拼音</button>
+<div class="answer"><div class="hanzi">你看看明天天气怎么样。</div><div class="pinyin">Nǐ kànkan míngtiān tiānqì zěnmeyàng.</div></div>
+</section>
+
+<section class="item">
+<div class="num">第 2 题</div>
+<div class="de">Bereiten wir das Essen vor und essen dann.</div>
+<button type="button">显示中文和拼音</button>
+<div class="answer"><div class="hanzi">我们准备准备吃饭吧。</div><div class="pinyin">Wǒmen zhǔnbèi zhǔnbèi chī fàn ba.</div></div>
+</section>
+
+<section class="item">
+<div class="num">第 3 题</div>
+<div class="de">Morgen wird das Wetter sehr schön. Lass uns rausgehen und uns ein bisschen bewegen.</div>
+<button type="button">显示中文和拼音</button>
+<div class="answer"><div class="hanzi">明天天气很好，我们出门运动运动吧。</div><div class="pinyin">Míngtiān tiānqì hěn hǎo, wǒmen chūmén yùndòng yùndòng ba.</div></div>
+</section>
+
+<section class="item">
+<div class="num">第 4 题</div>
+<div class="de">Überleg mal, was wir am Wochenende essen sollen.</div>
+<button type="button">显示中文和拼音</button>
+<div class="answer"><div class="hanzi">你想想，我们周末吃什么。</div><div class="pinyin">Nǐ xiǎngxiang, wǒmen zhōumò chī shénme.</div></div>
+</section>
+
+<section class="item">
+<div class="num">第 5 题</div>
+<div class="de">Geh mal nachsehen, wer gekommen ist.</div>
+<button type="button">显示中文和拼音</button>
+<div class="answer"><div class="hanzi">你去看看，谁来了。</div><div class="pinyin">Nǐ qù kànkan, shéi lái le.</div></div>
+</section>
+
+<footer>语法重点：动词重叠（看看、准备准备、运动运动、想想）</footer>
+</main>
+<script>
+document.querySelectorAll(".item button").forEach(function(button){
+  button.addEventListener("click",function(){
+    const answer=button.nextElementSibling;
+    const shown=answer.classList.toggle("show");
+    button.textContent=shown?"隐藏答案":"显示中文和拼音";
+  });
+});
+</script>
+</body>
+</html>
