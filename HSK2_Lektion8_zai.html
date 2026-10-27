@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再 练习</title>
+  <style>
+    :root { --teal:#347f8c; --teal-light:#eaf4f5; --ink:#34434a; --muted:#718087; --line:#dce5e7; --background:#f3f7f8; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:32px 18px; background:var(--background); color:var(--ink); font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif; line-height:1.6; }
+    .worksheet { max-width:850px; margin:0 auto; padding:42px 48px; background:#fff; border-radius:18px; box-shadow:0 8px 28px rgba(40,75,82,.08); }
+    header { text-align:center; padding-bottom:24px; margin-bottom:28px; border-bottom:2px solid var(--teal-light); }
+    h1 { margin:0 0 8px; color:var(--teal); font-size:2.2rem; letter-spacing:.08em; }
+    .instruction { margin:0; font-size:1.12rem; color:#596b71; }
+    .tip { margin-top:18px; padding:12px 16px; background:var(--teal-light); border-left:4px solid var(--teal); border-radius:6px; font-size:.96rem; }
+    ol { list-style:none; padding:0; margin:0; counter-reset:item; }
+    li { counter-increment:item; position:relative; padding:20px 18px 22px 58px; margin-bottom:16px; border:1px solid var(--line); border-radius:10px; background:#fff; break-inside:avoid; }
+    li::before { content:counter(item); position:absolute; left:18px; top:18px; display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--teal); color:white; font-weight:700; font-size:.9rem; }
+    .german { font-size:1.12rem; font-weight:600; color:#3f5056; }
+    .answer { display:none; margin-top:14px; padding:12px 14px; background:#f0f8f1; border-left:4px solid #5c9b70; border-radius:6px; color:#285b3b; font-size:1.08rem; }
+    .answer.visible { display:block; }
+    .hanzi { font-size:1.18rem; font-weight:600; margin-bottom:5px; }
+    .pinyin { color:#536c58; font-size:.98rem; }
+    .toggle { margin-top:14px; padding:8px 14px; border:1px solid var(--teal); border-radius:7px; background:white; color:var(--teal); font-size:.95rem; cursor:pointer; }
+    .toggle:hover { background:var(--teal-light); }
+    .toggle:focus-visible { outline:3px solid #9bcbd2; outline-offset:2px; }
+    footer { margin-top:28px; color:var(--muted); text-align:center; font-size:.9rem; }
+    @media(max-width:600px) { body{padding:12px} .worksheet{padding:28px 18px;border-radius:12px} h1{font-size:1.8rem} li{padding:18px 12px 18px 48px} li::before{left:12px;top:17px} .german{font-size:1.02rem} }
+    @media print { body{padding:0;background:white} .worksheet{max-width:none;padding:18mm 16mm;box-shadow:none;border-radius:0} .toggle{display:none} .answer{display:block} }
+  </style>
+</head>
+<body>
+  <main class="worksheet">
+    <header>
+      <h1>再 练习</h1>
+      <p class="instruction">将下面句子翻译成汉语。</p>
+      <div class="tip">请先阅读德语句子，自己思考并翻译。点击每道题下方的按钮，可以查看对应的汉字和拼音。</div>
+    </header>
+    <ol>
+      <li>
+        <div class="german">Ich werde dich nächste Woche wieder besuchen.</div>
+        <button class="toggle" type="button" aria-expanded="false">显示答案</button>
+        <div class="answer" aria-live="polite"><div class="hanzi">我下个星期再来看你。</div><div class="pinyin">Wǒ xià ge xīngqī zài lái kàn nǐ.</div></div>
+      </li>
+      <li>
+        <div class="german">Wir wollen am Samstag wieder zusammen essen.</div>
+        <button class="toggle" type="button" aria-expanded="false">显示答案</button>
+        <div class="answer" aria-live="polite"><div class="hanzi">我们星期六想再一起吃饭。</div><div class="pinyin">Wǒmen xīngqīliù xiǎng zài yìqǐ chī fàn.</div></div>
+      </li>
+      <li>
+        <div class="german">Können wir morgen wieder hierherkommen?</div>
+        <button class="toggle" type="button" aria-expanded="false">显示答案</button>
+        <div class="answer" aria-live="polite"><div class="hanzi">我们明天可以再来这里吗？</div><div class="pinyin">Wǒmen míngtiān kěyǐ zài lái zhèlǐ ma?</div></div>
+      </li>
+      <li>
+        <div class="german">Ich möchte zuerst darüber nachdenken und dir dann antworten.</div>
+        <button class="toggle" type="button" aria-expanded="false">显示答案</button>
+        <div class="answer" aria-live="polite"><div class="hanzi">我想先想一想，然后再回答你。</div><div class="pinyin">Wǒ xiǎng xiān xiǎng yi xiǎng, ránhòu zài huídá nǐ.</div></div>
+      </li>
+      <li>
+        <div class="german">Wir gehen erst nach draußen, wenn das Wetter besser ist.</div>
+        <button class="toggle" type="button" aria-expanded="false">显示答案</button>
+        <div class="answer" aria-live="polite"><div class="hanzi">等天气好了再出门。</div><div class="pinyin">Děng tiānqì hǎo le zài chūmén.</div></div>
+      </li>
+    </ol>
+    <footer>HSK 2 · 语法重点：再</footer>
+  </main>
+  <script>
+    document.querySelectorAll(".toggle").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const answer = button.nextElementSibling;
+        const isVisible = answer.classList.toggle("visible");
+        button.textContent = isVisible ? "隐藏答案" : "显示答案";
+        button.setAttribute("aria-expanded", String(isVisible));
+      });
+    });
+  </script>
+</body>
+</html>
